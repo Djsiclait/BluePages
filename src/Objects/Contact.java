@@ -9,17 +9,9 @@ public class Contact {
     // Attributes
     String firstName;
     String lastName;
-    String company;
-    Integer mobilePhone;
-    Integer workPhone;
-    Integer homePhone;
-    String workEmail;
-    String homeEmail;
-    String street;
-    String city;
-    String zip;
-    String state;
-    String country;
+    String address;
+    Integer telephone;
+    String email;
 
     public Contact(){
 
