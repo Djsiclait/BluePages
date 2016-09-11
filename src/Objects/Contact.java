@@ -7,19 +7,20 @@ package Objects;
 public class Contact {
 
     // Attributes
-    String firstName;
-    String lastName;
-    String address;
-    Integer telephone;
-    String email;
+    public String firstName;
+    public String lastName;
+    public String address;
+    public Integer telephone;
+    public String email;
 
     public Contact(){
 
     }
 
-    public Contact(String firstName, String lastName){
+    public Contact(String firstName, String lastName, Integer telephone){
         this.firstName = firstName;
         this.lastName = lastName;
+        this.telephone = telephone;
     }
 
 }
