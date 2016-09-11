@@ -5,7 +5,32 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
-   <f:view>
-      <h:outputLabel value="Hello, world"/>
-   </f:view>
+   <h:head>
+      <h:outputStylesheet library="css" name="style.css"/>
+   </h:head>
+   <h:body>
+      <h:panelGrid columns="2">
+         <h:selectOneListbox value="FirstName">
+            <f:selectItem itemValue="2000" itemLabel="Year1-2000" />
+            <f:selectItem itemValue="2010" itemLabel="Year1-2010" />
+            <f:selectItem itemValue="2020" itemLabel="Year1-2020" />
+         </h:selectOneListbox>
+         <h:form>
+            First Name: <br/><h:inputText  id="firstName" class="Long"/>
+            <h:message style="color: red;" for="firstName"/>
+            <br/><br/>
+            Last Name: <br/><h:inputText id="lastName" class="Long"/>
+            <h:message style="color: red;" for="lastName"/>
+            <br/><br/>
+            Address: <br/><h:inputText id="address" class="Long"/>
+            <br/><br/>
+            Telephone: <br/><h:inputText id="telephone" class="Long"/>
+            <br/><br/>
+            Email: <br/><h:inputText id="email" class="Long"/>
+            <br/><br/>
+            <h:commandButton class="btn" value="Edit"/>
+            <h:commandButton value="Delete"/>
+         </h:form>
+      </h:panelGrid>
+   </h:body>
 </html>
