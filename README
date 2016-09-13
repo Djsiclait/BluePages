@@ -4,10 +4,11 @@ Technologies used:
 	Glassfish 4.1.1
 	JDK 1.8
 	Java EE 7
+	PrimeFaces 5.2
 
 Programmers:
- 	Djidjelly Siclait
-	Eduardo Veras
+ 	Djidjelly Siclait   2011-2319
+	Eduardo Veras       2012-0844
 
 *User Manual*
 1. To visit the page go to localhost:8080/BluePages
