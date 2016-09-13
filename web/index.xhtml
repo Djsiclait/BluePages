@@ -7,34 +7,38 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui">
    <h:head>
-      <h:outputStylesheet library="css" name="style.css"/>
+      <!--<h:outputStylesheet library="css" name="style.css"/>-->
    </h:head>
    <h:body>
-      <h:panelGrid columns="2">
+     <!-- <h:panelGrid columns="2"> -->
          <h:form>
             <p:growl id="msgs" showDetail="true" />
 
-            <p:dataTable id="eventsDT" var="contact" value="#{PhoneBook.phoneBook}" selectionMode="single">
-               <f:facet  id="contact_table" name="header">My Contacts</f:facet>
+            <p:dataTable id="eventsDT" var="contact" value="#{dtPhoneBook.phoneBook}" selectionMode="single">
+               <f:facet name="header">My Contacts</f:facet>
 
                <p:column headerText="First Name">
                   <h:outputText value="#{contact.firstName}" />
                </p:column>
+
                <p:column headerText="Last Name">
                   <h:outputText value="#{contact.lastName}" />
                </p:column>
+
                <p:column headerText="Telefone">
                   <h:outputText value="#{contact.telephone}" />
                </p:column>
+
                <p:column headerText="Email">
                   <h:outputText value="#{contact.email}" />
                </p:column>
+
                <p:column headerText="Address">
                   <h:outputText value="#{contact.address}" />
                </p:column>
             </p:dataTable>
          </h:form>
-
+<!--
          <h:form>
             First Name: <br/><h:inputText  id="firstName" class="Long"/>
             <h:message style="color: red;" for="firstName"/>
@@ -51,6 +55,6 @@
             <h:commandButton class="btn" value="Edit"/>
             <h:commandButton value="Delete"/>
          </h:form>
-      </h:panelGrid>
+      </h:panelGrid> -->
    </h:body>
 </html>
