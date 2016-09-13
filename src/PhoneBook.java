@@ -4,18 +4,20 @@
 
 import Objects.Contact;
 
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.event.SystemEvent;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 
 @ManagedBean (name = "myPhoneBook")
 @SessionScoped
 public class PhoneBook implements Serializable{
 
     // Attribute
-    private ArrayList<Contact> phoneBook = new ArrayList<>();
+    private List<Contact> phoneBook = new ArrayList<>();
 
     // Auxiliary Variables
     private String firstName;
@@ -24,8 +26,15 @@ public class PhoneBook implements Serializable{
     private Integer telephone;
     private String email;
 
+    @PostConstruct
+    public void init(){
+        // Creating default person
+        phoneBook.add(new Contact("Fulano", "DeTal", "8093230909"));
+        System.out.println("\n\nCreated default contact");
+    }
+
     // Functions
-    public void CreateNewContact(String firstName, String lastName, Integer telephone){
+    public void CreateNewContact(String firstName, String lastName, String telephone){
         phoneBook.add(new Contact(firstName, lastName, telephone));
         System.out.println("New contact added...");
     }

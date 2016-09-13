@@ -40,3 +40,7 @@ table, th, td {
 .Long{
     width: 220px;
 }
+
+#contact_table{
+    color: green;
+}
