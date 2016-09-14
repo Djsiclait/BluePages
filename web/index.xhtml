@@ -33,7 +33,7 @@
       <h:form>
          <p:growl id="msgs" showDetail="true" />
 
-         <p:dataTable id="eventsDT" var="contact" value="#{dtPhoneBook.phoneBook}" selectionMode="single">
+         <p:dataTable id="basicDT" var="contact" value="#{myPhoneBook.phoneBook}" >
             <f:facet name="header">My Contacts</f:facet>
 
             <p:column headerText="First Name">

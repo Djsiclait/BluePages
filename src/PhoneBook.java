@@ -7,7 +7,6 @@ import Objects.Contact;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-import javax.faces.event.SystemEvent;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -29,13 +28,15 @@ public class PhoneBook implements Serializable{
     @PostConstruct
     public void init(){
         // Creating default person
-        phoneBook.add(new Contact("Fulano", "DeTal", "8093230909"));
+        getPhoneBook().add(new Contact("Fulano", "DeTal", "8093230909"));
         System.out.println("\n\nCreated default contact");
     }
 
+    //public List<Contact> getPhoneBook(){ return phoneBook; }
+
     // Functions
     public void CreateNewContact(String firstName, String lastName, String telephone){
-        phoneBook.add(new Contact(firstName, lastName, telephone));
+        getPhoneBook().add(new Contact(firstName, lastName, telephone));
         System.out.println("New contact added...");
     }
 
@@ -43,27 +44,27 @@ public class PhoneBook implements Serializable{
 
         int count = 0;
 
-        for (Contact contact: phoneBook) {
-            if(contact.firstName.equals(firstName) && contact.lastName.equals(lastName) && contact.telephone.equals(telephone))
+        for (Contact contact: getPhoneBook()) {
+            if(contact.getFirstName().equals(firstName) && contact.getLastName().equals(lastName) && contact.getTelephone().equals(telephone))
                 break;
 
             count++;
         }
 
-        phoneBook.remove(count);
+        getPhoneBook().remove(count);
     }
 
-    public void EditContact(String firstName, String lastName, Integer telephone){
+   /* public void EditContact(String firstName, String lastName, Integer telephone){
 
-        for (Contact contact: phoneBook) {
-            if(contact.firstName.equals(firstName) && contact.lastName.equals(lastName) && contact.telephone.equals(telephone)){
-                contact.firstName = firstName;
-                contact.lastName = lastName;
+        for (Contact contact: getPhoneBook()) {
+            if(contact.getFirstName().equals(firstName) && contact.getLastName().equals(lastName) && contact.getTelephone().equals(telephone)){
+                contact.setFirstName(firstName);
+                contact.setLastName(lastName);
 
                 break;
             }
         }
-    }
+    } */
 
     // Getters and Setters
     public String getFirstName() {
@@ -104,5 +105,13 @@ public class PhoneBook implements Serializable{
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public List<Contact> getPhoneBook() {
+        return phoneBook;
+    }
+
+    public void setPhoneBook(List<Contact> phoneBook) {
+        this.phoneBook = phoneBook;
     }
 }
