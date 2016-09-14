@@ -9,8 +9,12 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+import javax.faces.view.facelets.TagException;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import org.primefaces.event.SelectEvent;
@@ -25,10 +29,14 @@ public class PhoneBook implements Serializable{
     private List<Contact> phoneBook = new ArrayList<>();
 
     // Auxiliary Variables
+    @Size(max = 50)
     private String firstName;
+    @Size(max = 50)
     private String lastName;
-    private String address;
+    //TODO: Investigate why this condition interferes with the delete method
+    //@Size(min = 10, max = 10)
     private String telephone;
+    private String address;
     private String email;
 
     private Contact selectedContact;
@@ -44,30 +52,36 @@ public class PhoneBook implements Serializable{
         CleanBuffer();
     }
 
-    // Event Functions
-    public void OnContactSelect(SelectEvent event){
-        firstName = ((Contact) event.getObject()).getFirstName();
-        lastName = ((Contact) event.getObject()).getLastName();
-        telephone = ((Contact) event.getObject()).getTelephone();
-        address = ((Contact) event.getObject()).getAddress();
-        email = ((Contact) event.getObject()).getEmail();
-
-        getPhoneBook().add(new Contact("Moca", "Colmado", "8093230909", "", ""));
-
-        FacesMessage msgs = new FacesMessage("You've Selected ...", lastName + ", " + firstName);
-        // TODO: Figure out why this doesn't work
-        FacesContext.getCurrentInstance().addMessage(null, msgs);
-    }
-
     // Auxiliary Functions
     private void CleanBuffer(){
         firstName = lastName = address = telephone = email = "";
+
+        Collections.sort(phoneBook, new Comparator<Contact>() {
+            @Override
+            public int compare(Contact o1, Contact o2) {
+                return o1.getLastName().compareTo(o2.getLastName());
+            }
+        });
+    }
+
+    private boolean IsRegistered(){
+        for (Contact contact: getPhoneBook()) {
+            if (contact.getFirstName().equals(firstName) && contact.getLastName().equals(lastName) && contact.getTelephone().equals(telephone)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     // Functions
     public void CreateNewContact(){
-        getPhoneBook().add(new Contact(firstName, lastName, telephone, email, address));
-        System.out.println("New contact added...");
+
+        if(!IsRegistered()) {
+            getPhoneBook().add(new Contact(firstName, lastName, telephone, email, address));
+            System.out.println("New contact added...");
+        }
+        else
+            System.out.println("Contact Already Registered!");
 
         CleanBuffer();
     }
