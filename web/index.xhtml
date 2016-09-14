@@ -11,50 +11,54 @@
    </h:head>
    <h:body>
      <!-- <h:panelGrid columns="2"> -->
-         <h:form>
-            <p:growl id="msgs" showDetail="true" />
+      <h:form>
+         First Name: <br/><h:inputText  id="firstName" class="Long"/>
+         <h:message style="color: red;" for="firstName"/>
+         <br/><br/>
+         Last Name: <br/><h:inputText id="lastName" class="Long"/>
+         <h:message style="color: red;" for="lastName"/>
+         <br/><br/>
+         Address: <br/><h:inputText id="address" class="Long"/>
+         <br/><br/>
+         Telephone: <br/><h:inputText id="telephone" class="Long"/>
+         <br/><br/>
+         Email: <br/><h:inputText id="email" class="Long"/>
+         <br/><br/>
+         <h:commandButton class="btn" value="Edit"/>
+         <h:commandButton value="Delete"/>
+      </h:form>
 
-            <p:dataTable id="eventsDT" var="contact" value="#{dtPhoneBook.phoneBook}" selectionMode="single">
-               <f:facet name="header">My Contacts</f:facet>
+     <br/><br/>
 
-               <p:column headerText="First Name">
-                  <h:outputText value="#{contact.firstName}" />
-               </p:column>
+      <h:form>
+         <p:growl id="msgs" showDetail="true" />
 
-               <p:column headerText="Last Name">
-                  <h:outputText value="#{contact.lastName}" />
-               </p:column>
+         <p:dataTable id="eventsDT" var="contact" value="#{dtPhoneBook.phoneBook}" selectionMode="single">
+            <f:facet name="header">My Contacts</f:facet>
 
-               <p:column headerText="Telefone">
-                  <h:outputText value="#{contact.telephone}" />
-               </p:column>
+            <p:column headerText="First Name">
+               <h:outputText value="#{contact.firstName}" />
+            </p:column>
 
-               <p:column headerText="Email">
-                  <h:outputText value="#{contact.email}" />
-               </p:column>
+            <p:column headerText="Last Name">
+               <h:outputText value="#{contact.lastName}" />
+            </p:column>
 
-               <p:column headerText="Address">
-                  <h:outputText value="#{contact.address}" />
-               </p:column>
-            </p:dataTable>
-         </h:form>
+            <p:column headerText="Telephone">
+               <h:outputText value="#{contact.telephone}" />
+            </p:column>
+
+            <p:column headerText="Email">
+               <h:outputText value="#{contact.email}" />
+            </p:column>
+
+            <p:column headerText="Address">
+               <h:outputText value="#{contact.address}" />
+            </p:column>
+         </p:dataTable>
+      </h:form>
 <!--
-         <h:form>
-            First Name: <br/><h:inputText  id="firstName" class="Long"/>
-            <h:message style="color: red;" for="firstName"/>
-            <br/><br/>
-            Last Name: <br/><h:inputText id="lastName" class="Long"/>
-            <h:message style="color: red;" for="lastName"/>
-            <br/><br/>
-            Address: <br/><h:inputText id="address" class="Long"/>
-            <br/><br/>
-            Telephone: <br/><h:inputText id="telephone" class="Long"/>
-            <br/><br/>
-            Email: <br/><h:inputText id="email" class="Long"/>
-            <br/><br/>
-            <h:commandButton class="btn" value="Edit"/>
-            <h:commandButton value="Delete"/>
-         </h:form>
+
       </h:panelGrid> -->
    </h:body>
 </html>

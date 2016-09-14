@@ -23,7 +23,7 @@ public class PhoneBook implements Serializable{
     private String firstName;
     private String lastName;
     private String address;
-    private Integer telephone;
+    private String telephone;
     private String email;
 
     @PostConstruct
@@ -90,11 +90,11 @@ public class PhoneBook implements Serializable{
         this.address = address;
     }
 
-    public Integer getTelephone() {
+    public String getTelephone() {
         return telephone;
     }
 
-    public void setTelephone(Integer telephone) {
+    public void setTelephone(String telephone) {
         this.telephone = telephone;
     }
 
