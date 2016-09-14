@@ -25,8 +25,8 @@
          <br/><br/>
          Email: <br/><h:inputText id="email" class="Long" value="#{myPhoneBook.email}"/>
          <br/><br/>
-         <h:commandButton action="#{myPhoneBook.CreateNewContact()}" value="Add"/>
-         <h:commandButton class="btn" value="Edit"/>
+         <h:commandButton action="#{myPhoneBook.CreateNewContact}" value="Add"/>
+         <h:commandButton action="#{myPhoneBook.EditContact}" class="btn" value="Edit"/>
          <h:commandButton action="#{myPhoneBook.DeleteContact}" value="Delete"/>
       </h:form>
       <br/><br/>

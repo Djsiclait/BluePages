@@ -87,17 +87,22 @@ public class PhoneBook implements Serializable{
         CleanBuffer();
     }
 
-   /* public void EditContact(String firstName, String lastName, Integer telephone){
+    public void EditContact(){
 
         for (Contact contact: getPhoneBook()) {
-            if(contact.getFirstName().equals(firstName) && contact.getLastName().equals(lastName) && contact.getTelephone().equals(telephone)){
+            if(contact.getFirstName().equals(selectedContact.getFirstName()) && contact.getLastName().equals(selectedContact.getLastName()) && contact.getTelephone().equals(selectedContact.getTelephone())){
                 contact.setFirstName(firstName);
                 contact.setLastName(lastName);
+                contact.setTelephone(telephone);
+                contact.setEmail(email);
+                contact.setAddress(address);
 
                 break;
             }
         }
-    } */
+
+        CleanBuffer();
+    }
 
     // Getters and Setters
     public String getFirstName() {
