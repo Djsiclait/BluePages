@@ -51,6 +51,7 @@ public class PhoneBook implements Serializable{
         telephone = ((Contact) event.getObject()).getTelephone();
         address = ((Contact) event.getObject()).getAddress();
         email = ((Contact) event.getObject()).getEmail();
+
         getPhoneBook().add(new Contact("Moca", "Colmado", "8093230909", "", ""));
 
         FacesMessage msgs = new FacesMessage("You've Selected ...", lastName + ", " + firstName);
@@ -71,23 +72,6 @@ public class PhoneBook implements Serializable{
         CleanBuffer();
     }
 
-    public void DeleteContact(){
-
-        int count = 0;
-
-        for (Contact contact: getPhoneBook()) {
-            if(contact.getFirstName().equals(firstName) && contact.getLastName().equals(lastName) && contact.getTelephone().equals(telephone))
-                break;
-
-            count++;
-        }
-
-        getPhoneBook().remove(count);
-
-        CleanBuffer();
-    }
-
-
     public void DeleteContact(String firstName, String lastName, String telephone){
 
         int count = 0;
@@ -105,14 +89,18 @@ public class PhoneBook implements Serializable{
     }
 
     public void EditContact(){
-
         for (Contact contact: getPhoneBook()) {
             if(contact.getFirstName().equals(selectedContact.getFirstName()) && contact.getLastName().equals(selectedContact.getLastName()) && contact.getTelephone().equals(selectedContact.getTelephone())){
-                contact.setFirstName(firstName);
-                contact.setLastName(lastName);
-                contact.setTelephone(telephone);
-                contact.setEmail(email);
-                contact.setAddress(address);
+                if(!firstName.equals(""))
+                    contact.setFirstName(firstName);
+                if(!lastName.equals(""))
+                    contact.setLastName(lastName);
+                if(!telephone.equals(""))
+                    contact.setTelephone(telephone);
+                if(!contact.getEmail().equals(""))
+                    contact.setEmail(email);
+                if(!contact.getAddress().equals(""))
+                    contact.setAddress(address);
 
                 break;
             }
