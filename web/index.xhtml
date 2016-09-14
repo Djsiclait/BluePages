@@ -10,31 +10,13 @@
       <!--<h:outputStylesheet library="css" name="style.css"/>-->
    </h:head>
    <h:body>
-     <!-- <h:panelGrid columns="2"> -->
-      <h:form>
-         First Name: <br/><h:inputText  id="firstName" class="Long"/>
-         <h:message style="color: red;" for="firstName"/>
-         <br/><br/>
-         Last Name: <br/><h:inputText id="lastName" class="Long"/>
-         <h:message style="color: red;" for="lastName"/>
-         <br/><br/>
-         Address: <br/><h:inputText id="address" class="Long"/>
-         <br/><br/>
-         Telephone: <br/><h:inputText id="telephone" class="Long"/>
-         <br/><br/>
-         Email: <br/><h:inputText id="email" class="Long"/>
-         <br/><br/>
-         <h:commandButton class="btn" value="Edit"/>
-         <h:commandButton value="Delete"/>
-      </h:form>
-
-     <br/><br/>
-
       <h:form>
          <p:growl id="msgs" showDetail="true" />
 
-         <p:dataTable id="basicDT" var="contact" value="#{myPhoneBook.phoneBook}" >
+         <p:dataTable id="eventsDT" var="contact" value="#{myPhoneBook.phoneBook}" selectionMode="single" selection="#{myPhoneBook.selectedContact}" rowKey="#{contact.firstName}-#{contact.lastName}-#{contact.telephone}" >
             <f:facet name="header">My Contacts</f:facet>
+
+            <f:ajax event="rowSelect" listener="#{myPhoneBook.OnContactSelect}" update=":form:msgs" />
 
             <p:column headerText="First Name">
                <h:outputText value="#{contact.firstName}" />
@@ -56,9 +38,24 @@
                <h:outputText value="#{contact.address}" />
             </p:column>
          </p:dataTable>
-      </h:form>
-<!--
 
-      </h:panelGrid> -->
+         <br/><br/>
+
+         First Name: <br/><h:inputText  id="firstName" class="Long" value="#{myPhoneBook.firstName}" required="true"/>
+         <h:message style="color: red;" for="firstName" />
+         <br/><br/>
+         Last Name: <br/><h:inputText id="lastName" class="Long" value="#{myPhoneBook.lastName}" required="true"/>
+         <h:message style="color: red;" for="lastName" />
+         <br/><br/>
+         Telephone: <br/><h:inputText id="telephone" class="Long" value="#{myPhoneBook.telephone}" required="true"/>
+         <h:message style="color: red;" for="telephone" />
+         <br/><br/>
+         Address: <br/><h:inputText id="address" class="Long" value="#{myPhoneBook.address}"/>
+         <br/><br/>
+         Email: <br/><h:inputText id="email" class="Long" value="#{myPhoneBook.email}"/>
+         <br/><br/>
+         <h:commandButton class="btn" value="Edit"/>
+         <h:commandButton value="Delete"/>
+      </h:form>
    </h:body>
 </html>

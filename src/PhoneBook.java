@@ -5,11 +5,17 @@
 import Objects.Contact;
 
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+
+import org.primefaces.event.SelectEvent;
+import org.primefaces.event.UnselectEvent;
+import org.primefaces.model.SelectableDataModel;
 
 @ManagedBean (name = "myPhoneBook")
 @SessionScoped
@@ -25,14 +31,32 @@ public class PhoneBook implements Serializable{
     private String telephone;
     private String email;
 
+    private Contact selectedContact;
+
     @PostConstruct
     public void init(){
         // Creating default person
         getPhoneBook().add(new Contact("Fulano", "DeTal", "8093230909"));
+        getPhoneBook().add(new Contact("Fulana", "DeTal", "8093230909"));
         System.out.println("\n\nCreated default contact");
+
+        // Initializing form Auxiliary Variables
+        firstName = lastName = address = telephone = email = "";
     }
 
-    //public List<Contact> getPhoneBook(){ return phoneBook; }
+    // Event Functions
+    public void OnContactSelect(SelectEvent event){
+        firstName = ((Contact) event.getObject()).getFirstName();
+        lastName = ((Contact) event.getObject()).getLastName();
+        telephone = ((Contact) event.getObject()).getTelephone();
+        address = ((Contact) event.getObject()).getAddress();
+        email = ((Contact) event.getObject()).getEmail();
+        getPhoneBook().add(new Contact("Moca", "Colmado", "8093230909"));
+
+        FacesMessage msgs = new FacesMessage("You've Selected ...", lastName + ", " + firstName);
+        // TODO: Figure out why this doesn't work
+        FacesContext.getCurrentInstance().addMessage(null, msgs);
+    }
 
     // Functions
     public void CreateNewContact(String firstName, String lastName, String telephone){
@@ -113,5 +137,13 @@ public class PhoneBook implements Serializable{
 
     public void setPhoneBook(List<Contact> phoneBook) {
         this.phoneBook = phoneBook;
+    }
+
+    public Contact getSelectedContact() {
+        return selectedContact;
+    }
+
+    public void setSelectedContact(Contact selectedContact) {
+        this.selectedContact = selectedContact;
     }
 }
