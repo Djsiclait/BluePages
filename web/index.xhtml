@@ -12,7 +12,7 @@
    </h:head>
    <h:body>
       <h:form id="infobox">
-         First Name: <br/><h:inputText  id="firstName" value="#{myPhoneBook.firstName}" required="true"/>
+         First Name: <br/><h:inputText id="firstName" class="Long" value="#{myPhoneBook.firstName}" required="true"/>
          <h:message style="color: red;" for="firstName" />
          <br/><br/>
          Last Name: <br/><h:inputText id="lastName" class="Long" value="#{myPhoneBook.lastName}" required="true"/>
@@ -83,7 +83,7 @@
             </p:outputPanel>
          </p:dialog>
 
-         <p:dialog header="Edit Contact" widgetVar="editDialog" showEffect="fade" hideEffect="fade" resizable="false" draggable="false" >
+         <p:dialog class="editbox" header="Edit Contact" widgetVar="editDialog" showEffect="fade" hideEffect="fade" resizable="false" draggable="false" >
             <p:outputPanel id="editInfo">
                <p:panelGrid columns="2" rendered="#{not empty myPhoneBook.selectedContact}" >
                <h:outputText value="Name: " />
@@ -111,7 +111,7 @@
                <br/><br/>
                New Email: <br/><h:inputText class="Long" value="#{myPhoneBook.email}" />
                <br/><br/>
-               <h:commandButton id="special" action="#{myPhoneBook.EditContact}" class="btn" value="Edit"/>
+               <h:commandButton action="#{myPhoneBook.EditContact}" class="softbtn edit" value="Edit"/>
             </p:outputPanel>
          </p:dialog>
       </h:form>
