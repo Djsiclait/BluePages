@@ -10,6 +10,25 @@
       <!--<h:outputStylesheet library="css" name="style.css"/>-->
    </h:head>
    <h:body>
+      <h:form id="box">
+         First Name: <br/><h:inputText  id="firstName" class="Long" value="#{myPhoneBook.firstName}" required="true"/>
+         <h:outputText id="first" value="#{myPhoneBook.firstName}"/>
+         <h:message style="color: red;" for="firstName" />
+         <br/><br/>
+         Last Name: <br/><h:inputText id="lastName" class="Long" value="#{myPhoneBook.lastName}" required="true"/>
+         <h:message style="color: red;" for="lastName" />
+         <br/><br/>
+         Telephone: <br/><h:inputText id="telephone" class="Long" value="#{myPhoneBook.telephone}" required="true"/>
+         <h:message style="color: red;" for="telephone" />
+         <br/><br/>
+         Address: <br/><h:inputText id="address" class="Long" value="#{myPhoneBook.address}"/>
+         <br/><br/>
+         Email: <br/><h:inputText id="email" class="Long" value="#{myPhoneBook.email}"/>
+         <br/><br/>
+         <h:commandButton class="btn" value="Edit"/>
+         <h:commandButton value="Delete"/>
+      </h:form>
+      <br/><br/>
       <h:form id="form">
          <p:growl id="msgs" showDetail="true" />
 
@@ -40,38 +59,24 @@
                <p:commandButton process="singleDT" update=":form:contactInfo" icon="ui-icon-search" value="View" oncomplete="PF('contactDialog').show()" />
             </f:facet>
          </p:dataTable>
-      </h:form>
-         <br/><br/>
-      <h:form id="box">
-         First Name: <br/><h:inputText  id="firstName" class="Long" value="#{myPhoneBook.firstName}" required="true"/>
-         <h:outputText id="first" value="#{myPhoneBook.firstName}"/>
-         <h:message style="color: red;" for="firstName" />
-         <br/><br/>
-         Last Name: <br/><h:inputText id="lastName" class="Long" value="#{myPhoneBook.lastName}" required="true"/>
-         <h:message style="color: red;" for="lastName" />
-         <br/><br/>
-         Telephone: <br/><h:inputText id="telephone" class="Long" value="#{myPhoneBook.telephone}" required="true"/>
-         <h:message style="color: red;" for="telephone" />
-         <br/><br/>
-         Address: <br/><h:inputText id="address" class="Long" value="#{myPhoneBook.address}"/>
-         <br/><br/>
-         Email: <br/><h:inputText id="email" class="Long" value="#{myPhoneBook.email}"/>
-         <br/><br/>
-         <h:commandButton class="btn" value="Edit"/>
-         <h:commandButton value="Delete"/>
-      </h:form>
 
-      <p:dialog header="Contact Info" widgetVar="contactDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
-         <p:outputPanel id="contactInfo" style="text-align: center">
-            <p:panelGrid columns="1" rendered="#{not empty myPhoneBook.selectedContact}" >
-               <f:facet name="header">
-                  #{myPhoneBook.selectedContact.lastName}, #{myPhoneBook.selectedContact.firstName}
-               </f:facet>
-               <h:outputText value="#{myPhoneBook.selectedContact.telephone}" />
-               <h:outputText value="#{myPhoneBook.selectedContact.email}" />
-               <h:outputText value="#{myPhoneBook.selectedContact.address}" />
-            </p:panelGrid>
-         </p:outputPanel>
-      </p:dialog>
+         <p:dialog header="Contact Info" widgetVar="contactDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
+            <p:outputPanel id="contactInfo" style="text-align: center">
+               <p:panelGrid columns="2" rendered="#{not empty myPhoneBook.selectedContact}" >
+                  <h:outputText value="Name: " />
+                  <h:outputText  value="#{myPhoneBook.selectedContact.lastName}, #{myPhoneBook.selectedContact.firstName}" />
+
+                  <h:outputText value="Telephone: " />
+                  <h:outputText value="#{myPhoneBook.selectedContact.telephone}" />
+
+                  <h:outputText value="Email: " />
+                  <h:outputText value="#{myPhoneBook.selectedContact.email}" />
+
+                  <h:outputText value="Address: " />
+                  <h:outputText value="#{myPhoneBook.selectedContact.address}" />
+               </p:panelGrid>
+            </p:outputPanel>
+         </p:dialog>
+      </h:form>
    </h:body>
 </html>
