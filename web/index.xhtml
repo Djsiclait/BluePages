@@ -10,13 +10,11 @@
       <!--<h:outputStylesheet library="css" name="style.css"/>-->
    </h:head>
    <h:body>
-      <h:form>
+      <h:form id="form">
          <p:growl id="msgs" showDetail="true" />
 
-         <p:dataTable id="eventsDT" var="contact" value="#{myPhoneBook.phoneBook}" selectionMode="single" selection="#{myPhoneBook.selectedContact}" rowKey="#{contact.firstName}-#{contact.lastName}-#{contact.telephone}" >
+         <p:dataTable id="singleDT" var="contact" value="#{myPhoneBook.phoneBook}" selectionMode="single" selection="#{myPhoneBook.selectedContact}" rowKey="#{contact.firstName}-#{contact.lastName}-#{contact.telephone}" >
             <f:facet name="header">My Contacts</f:facet>
-
-            <f:ajax event="rowSelect" listener="#{myPhoneBook.OnContactSelect}" update=":form:msgs" />
 
             <p:column headerText="First Name">
                <h:outputText value="#{contact.firstName}" />
@@ -37,11 +35,16 @@
             <p:column headerText="Address">
                <h:outputText value="#{contact.address}" />
             </p:column>
+
+            <f:facet name="footer">
+               <p:commandButton process="singleDT" update=":form:contactInfo" icon="ui-icon-search" value="View" oncomplete="PF('contactDialog').show()" />
+            </f:facet>
          </p:dataTable>
-
+      </h:form>
          <br/><br/>
-
+      <h:form id="box">
          First Name: <br/><h:inputText  id="firstName" class="Long" value="#{myPhoneBook.firstName}" required="true"/>
+         <h:outputText id="first" value="#{myPhoneBook.firstName}"/>
          <h:message style="color: red;" for="firstName" />
          <br/><br/>
          Last Name: <br/><h:inputText id="lastName" class="Long" value="#{myPhoneBook.lastName}" required="true"/>
@@ -57,5 +60,18 @@
          <h:commandButton class="btn" value="Edit"/>
          <h:commandButton value="Delete"/>
       </h:form>
+
+      <p:dialog header="Contact Info" widgetVar="contactDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
+         <p:outputPanel id="contactInfo" style="text-align: center">
+            <p:panelGrid columns="1" rendered="#{not empty myPhoneBook.selectedContact}" >
+               <f:facet name="header">
+                  #{myPhoneBook.selectedContact.lastName}, #{myPhoneBook.selectedContact.firstName}
+               </f:facet>
+               <h:outputText value="#{myPhoneBook.selectedContact.telephone}" />
+               <h:outputText value="#{myPhoneBook.selectedContact.email}" />
+               <h:outputText value="#{myPhoneBook.selectedContact.address}" />
+            </p:panelGrid>
+         </p:outputPanel>
+      </p:dialog>
    </h:body>
 </html>
