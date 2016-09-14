@@ -36,12 +36,12 @@ public class PhoneBook implements Serializable{
     @PostConstruct
     public void init(){
         // Creating default person
-        getPhoneBook().add(new Contact("Fulano", "DeTal", "8093230909"));
-        getPhoneBook().add(new Contact("Fulana", "DeTal", "8093230909"));
+        getPhoneBook().add(new Contact("Fulano", "DeTal", "8093230909", "", ""));
+        getPhoneBook().add(new Contact("Fulana", "DeTal", "8093230909", "", ""));
         System.out.println("\n\nCreated default contact");
 
         // Initializing form Auxiliary Variables
-        firstName = lastName = address = telephone = email = "";
+        CleanBuffer();
     }
 
     // Event Functions
@@ -51,20 +51,27 @@ public class PhoneBook implements Serializable{
         telephone = ((Contact) event.getObject()).getTelephone();
         address = ((Contact) event.getObject()).getAddress();
         email = ((Contact) event.getObject()).getEmail();
-        getPhoneBook().add(new Contact("Moca", "Colmado", "8093230909"));
+        getPhoneBook().add(new Contact("Moca", "Colmado", "8093230909", "", ""));
 
         FacesMessage msgs = new FacesMessage("You've Selected ...", lastName + ", " + firstName);
         // TODO: Figure out why this doesn't work
         FacesContext.getCurrentInstance().addMessage(null, msgs);
     }
 
-    // Functions
-    public void CreateNewContact(){
-        getPhoneBook().add(new Contact(firstName, lastName, telephone));
-        System.out.println("New contact added...");
+    // Auxiliary Functions
+    private void CleanBuffer(){
+        firstName = lastName = address = telephone = email = "";
     }
 
-    public void DeleteContact(String firstName, String lastName, Integer telephone){
+    // Functions
+    public void CreateNewContact(){
+        getPhoneBook().add(new Contact(firstName, lastName, telephone, email, address));
+        System.out.println("New contact added...");
+
+        CleanBuffer();
+    }
+
+    public void DeleteContact(){
 
         int count = 0;
 
@@ -76,6 +83,8 @@ public class PhoneBook implements Serializable{
         }
 
         getPhoneBook().remove(count);
+
+        CleanBuffer();
     }
 
    /* public void EditContact(String firstName, String lastName, Integer telephone){

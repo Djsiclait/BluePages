@@ -17,10 +17,12 @@ public class Contact {
 
     }
 
-    public Contact(String firstName, String lastName, String telephone){
+    public Contact(String firstName, String lastName, String telephone, String email, String address){
         this.setFirstName(firstName);
         this.setLastName(lastName);
         this.setTelephone(telephone);
+        this.setEmail(email);
+        this.setAddress(address);
     }
 
     public String getFirstName() {
