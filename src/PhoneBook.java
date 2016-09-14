@@ -59,7 +59,7 @@ public class PhoneBook implements Serializable{
     }
 
     // Functions
-    public void CreateNewContact(String firstName, String lastName, String telephone){
+    public void CreateNewContact(){
         getPhoneBook().add(new Contact(firstName, lastName, telephone));
         System.out.println("New contact added...");
     }

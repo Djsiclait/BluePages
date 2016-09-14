@@ -25,6 +25,7 @@
          <br/><br/>
          Email: <br/><h:inputText id="email" class="Long" value="#{myPhoneBook.email}"/>
          <br/><br/>
+         <h:commandButton action="#{myPhoneBook.CreateNewContact()}" value="Add"/>
          <h:commandButton class="btn" value="Edit"/>
          <h:commandButton value="Delete"/>
       </h:form>
@@ -56,7 +57,7 @@
             </p:column>
 
             <f:facet name="footer">
-               <p:commandButton process="singleDT" update=":form:contactInfo" icon="ui-icon-search" value="View" oncomplete="PF('contactDialog').show()" />
+               <p:commandButton process="singleDT" update=":form:contactInfo" icon="ui-icon-search" value="View Contact Info" oncomplete="PF('contactDialog').show()" />
             </f:facet>
          </p:dataTable>
 
