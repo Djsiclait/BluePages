@@ -90,17 +90,17 @@ public class PhoneBook implements Serializable{
 
     public void EditContact(){
         for (Contact contact: getPhoneBook()) {
-            if(contact.getFirstName().equals(selectedContact.getFirstName()) && contact.getLastName().equals(selectedContact.getLastName()) && contact.getTelephone().equals(selectedContact.getTelephone())){
-                if(!firstName.equals(""))
-                    contact.setFirstName(firstName);
-                if(!lastName.equals(""))
-                    contact.setLastName(lastName);
-                if(!telephone.equals(""))
-                    contact.setTelephone(telephone);
-                if(!contact.getEmail().equals(""))
-                    contact.setEmail(email);
-                if(!contact.getAddress().equals(""))
-                    contact.setAddress(address);
+                    if(contact.getFirstName().equals(selectedContact.getFirstName()) && contact.getLastName().equals(selectedContact.getLastName()) && contact.getTelephone().equals(selectedContact.getTelephone())){
+                        if(!firstName.equals(""))
+                            contact.setFirstName(firstName);
+                        if(!lastName.equals(""))
+                            contact.setLastName(lastName);
+                        if(!telephone.equals(""))
+                            contact.setTelephone(telephone);
+                        if(!email.equals(""))
+                            contact.setEmail(email);
+                        if(!address.equals(""))
+                            contact.setAddress(address);
 
                 break;
             }
