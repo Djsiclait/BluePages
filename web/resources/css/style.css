@@ -1,3 +1,43 @@
 body{
+    background-color: #ddffff;
+}
+
+#infobox{
+    border: 4px solid blue;
+    margin: auto;
+    width: 250px;
+    padding: 10px 0 10px 20px;
+    border-radius: 15px;
+    background-color: lightblue;
+}
+
+.softbtn, #special {
+    border-radius: 40%;
+    margin: auto;
+}
+
+.softbtn:focus, #special:focus {
+    outline: none;
+}
+
+.softbtn:hover, #special:hover {
+    cursor: pointer;
+}
+
+.add {
     background-color: aqua;
+    margin-left: 200px;
+}
+
+.add:hover {
+    background-color: lightgreen;
+    color: white;
+}
+
+.delete {
+    margin-left: 60px;
+}
+
+.delete:hover{
+    background-color: lightcoral;
 }
