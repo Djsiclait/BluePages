@@ -28,9 +28,8 @@
          <h:commandButton class="softbtn add" action="#{myPhoneBook.CreateNewContact}" value="Add"/>
       </h:form>
       <br/><br/>
-
+      You have <span style="color: #ff171f; font-size: 20px;">#{myPhoneBook.phoneBook.size()}</span> registered entries.
       <h:form id="form">
-         <p:growl id="msgs" showDetail="true" />
 
          <p:dataTable id="singleDT" var="contact" value="#{myPhoneBook.phoneBook}" selectionMode="single" selection="#{myPhoneBook.selectedContact}" rowKey="#{contact.firstName}-#{contact.lastName}-#{contact.telephone}" >
             <f:facet name="header">My Contacts</f:facet>
