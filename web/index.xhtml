@@ -27,8 +27,7 @@
          <br/><br/>
          <h:commandButton action="#{myPhoneBook.CreateNewContact}" value="Add"/>
          <h:commandButton action="#{myPhoneBook.EditContact}" class="btn" value="Edit"/>
-         <h:commandButton action="#{myPhoneBook.DeleteContact}" value="Delete"/>
-      </h:form>
+         </h:form>
       <br/><br/>
       <h:form id="form">
          <p:growl id="msgs" showDetail="true" />
@@ -54,6 +53,10 @@
 
             <p:column headerText="Address">
                <h:outputText value="#{contact.address}" />
+            </p:column>
+
+            <p:column headerText="Option">
+               <h:commandButton action="#{myPhoneBook.DeleteContact(contact.firstName, contact.lastName, contact.telephone)}" value="Delete"/>
             </p:column>
 
             <f:facet name="footer">

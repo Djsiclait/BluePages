@@ -87,6 +87,23 @@ public class PhoneBook implements Serializable{
         CleanBuffer();
     }
 
+
+    public void DeleteContact(String firstName, String lastName, String telephone){
+
+        int count = 0;
+
+        for (Contact contact: getPhoneBook()) {
+            if(contact.getFirstName().equals(firstName) && contact.getLastName().equals(lastName) && contact.getTelephone().equals(telephone))
+                break;
+
+            count++;
+        }
+
+        getPhoneBook().remove(count);
+
+        CleanBuffer();
+    }
+
     public void EditContact(){
 
         for (Contact contact: getPhoneBook()) {
