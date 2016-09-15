@@ -5,10 +5,16 @@ Technologies used:
 	JDK 1.8
 	Java EE 7
 	PrimeFaces 5.2
+	Bean Validation
 
 Programmers:
  	Djidjelly Siclait   2011-2319
 	Eduardo Veras       2012-0844
+	
+Set Up:
+	1. Include all needed libraries
+	2. Configure Glassfish server
+	3. Run
 
 *User Manual*
 1. To visit the page go to localhost:8080/BluePages
